@@ -12,10 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2020_01_17_121630) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "feeds", force: :cascade do |t|
     t.text "image"
     t.text "content"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_feeds_on_user_id"
@@ -29,4 +32,5 @@ ActiveRecord::Schema.define(version: 2020_01_17_121630) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "feeds", "users"
 end

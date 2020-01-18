@@ -37,6 +37,9 @@
    height:42px;
    width: 100%;
  }
+ header a:visited{
+   color: white;
+ }
 
  .menu-bar{
    padding:10px;

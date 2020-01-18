@@ -1,0 +1,11 @@
+<p>
+  <ul>
+    <li><strong>Image:</strong></li>
+    <li><%= image_tag @feed.image.url %></li>
+    <li><strong>Content:</strong></li>
+    <li><%= @feed.content %></li>
+  </ul>
+</p>
+
+<%= link_to 'Edit', edit_feed_path(@feed) %> |
+<%= link_to 'Back', feeds_path %>

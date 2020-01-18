@@ -1,0 +1,31 @@
+<div class="new_feed">
+<%= link_to '投稿を作成する',new_feed_path %>
+</div>
+
+<h1>投稿一覧</h1>
+<p><%= notice %></p>
+
+<% @feeds.each do |feed| %>
+  <div class="posted_feeds">
+    <table>
+      <tr>
+        <td>ユーザー名：<%= link_to "#{feed.user.name}", user_path(feed.user_id) %></td>
+      </tr>
+      <tr>
+        <td>コメント：<%= feed.content %></td>
+      </tr>
+      <tr>
+        <td><%= image_tag feed.image.url %></td>
+      </tr>
+    </table>
+    <%= link_to "詳細", feed_path(feed.id) %>
+    <%= link_to "編集", edit_feed_path(feed.id) %>
+    <%= link_to "削除", feed_path(feed.id), method: :delete ,data: {confirm: '本当に削除していいですか？'}%>
+    <div class="">　</div>
+    <div class="">　</div>
+  </div>
+<% end %>
+
+<footer>copyright (c)【2020】 【Facebook?】 all rights reserved.</footer>
+
+</body>

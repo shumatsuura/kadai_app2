@@ -1,0 +1,26 @@
+<%= form_with(model: @feed, url: choose_new_or_edit,local: true) do |form| %>
+  <% if @feed.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @feed.errors.count %>件のエラーがあります。</h2>
+      <ul>
+        <% @feed.errors.full_messages.each do|msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= image_tag(@feed.image.url) if @feed.image && @feed.image.url %>
+    <%= form.file_field :image %>
+    <%= form.hidden_field :image_cache %>
+  </div>
+
+  <div class="feed_content">
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+  </div>
+  <%= form.submit %>
+<% end %>

@@ -1,6 +1,8 @@
-<div class="new_feed">
-<%= link_to '投稿を作成する',new_feed_path %>
-</div>
+<% if logged_in? %>
+  <div class="new_feed">
+    <%= link_to '投稿を作成する',new_feed_path %>
+  </div>
+<% end %>
 
 <h1>投稿一覧</h1>
 
@@ -18,8 +20,12 @@
       </tr>
     </table>
     <%= link_to "詳細", feed_path(feed.id) %>
-    <%= link_to "編集", edit_feed_path(feed.id) %>
-    <%= link_to "削除", feed_path(feed.id), method: :delete ,data: {confirm: '本当に削除していいですか？'}%>
+    <% if logged_in? %>
+      <% if current_user.id == feed.user_id %>
+        <%= link_to "編集", edit_feed_path(feed.id) %>
+        <%= link_to "削除", feed_path(feed.id), method: :delete ,data: {confirm: '本当に削除していいですか？'}%>
+      <% end %>
+    <% end %>
     <div class="">　</div>
     <div class="">　</div>
   </div>

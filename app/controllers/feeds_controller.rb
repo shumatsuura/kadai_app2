@@ -6,7 +6,11 @@ class FeedsController < ApplicationController
   end
 
   def new
-    @feed = Feed.new
+    if logged_in?
+      @feed = Feed.new
+    else
+      redirect_to feeds_path, notice:"ログインしてくだい。"
+    end
   end
 
   def create
@@ -30,6 +34,7 @@ class FeedsController < ApplicationController
   end
 
   def edit
+    redirect_to feeds_path, notice:"アクセス権限がありません。" if not current_user.id == params[:id]
   end
 
   def update
@@ -45,8 +50,12 @@ class FeedsController < ApplicationController
   end
 
   def destroy
-    @feed.destroy
-    redirect_to feeds_path, notice:"削除しました"
+    if not current_user.id == @feed.user_id
+      redirect_to feeds_path, notice:"権限がありません。"
+    else
+      @feed.destroy
+      redirect_to feeds_path, notice:"削除しました"
+    end
   end
 
 

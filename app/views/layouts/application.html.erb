@@ -27,9 +27,11 @@
           </div>
         </div>
       </header>
-      <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
-      <% end %>
+      <div class="center">
+        <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "#{key}") %>
+        <% end %>
+      </div>
       <%= yield %>
       <footer>copyright (c)【2020】 【Facebook?】 all rights reserved.</footer>
     </div>

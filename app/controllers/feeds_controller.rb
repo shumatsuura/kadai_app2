@@ -34,7 +34,7 @@ class FeedsController < ApplicationController
   end
 
   def edit
-    redirect_to feeds_path, notice:"アクセス権限がありません。" if not current_user.id == params[:id]
+    redirect_to feeds_path, notice:"アクセス権限がありません。" if not current_user.id == @feed.user_id
   end
 
   def update

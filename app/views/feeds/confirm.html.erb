@@ -1,27 +1,16 @@
 <h1>確認画面</h1>
     <table>
       <%= form_with(model: @feed, url: feeds_path, local: true) do |form| %>
-        <tr>
-          <td>Image:</td>
-          <td><%= image_tag(@feed.image.url) if @feed.image && @feed.image.url %></td>
-        </tr>
-        <tr>
-          <td><%= form.label :content %></td>
-          <td><%= @feed.content %></td>
-        </tr>
-        <tr>
-          <td><%= form.hidden_field :image_cache %>
-          <td><%= form.hidden_field :content %>
-        </tr>
-        <tr>
-          <td><%= form.submit "投稿する" %></td>
-        </tr>
-      <% end %>
-
-      <%= form_with(model:@feed, url:new_feed_path, local:true, method:"get") do |form| %>
         <%= form.hidden_field :image_cache %>
         <%= form.hidden_field :content %>
         <tr>
+          <td><%= image_tag(@feed.image.url) if @feed.image && @feed.image.url %></td>
+        </tr>
+        <tr>
+          <td><%= @feed.content %></td>
+        </tr>
+        <tr>
+          <td><%= form.submit "投稿する" %></td>
           <td><%= form.submit "戻る", name: "back" %></td>
         </tr>
       <% end %>
